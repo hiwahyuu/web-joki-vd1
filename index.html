@@ -1,0 +1,1315 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bayok Joki Roblox — Premium Service</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg: #05050a;
+      --surface: #0d0d18;
+      --card: #12121f;
+      --border: rgba(120,80,255,0.18);
+      --accent: #7c3aed;
+      --accent2: #e040fb;
+      --gold: #f5c842;
+      --gold2: #ffd700;
+      --text: #f0eeff;
+      --muted: #8a8aaa;
+      --glow: 0 0 40px rgba(124,58,237,0.35);
+      --glow-gold: 0 0 40px rgba(245,200,66,0.35);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    /* NOISE OVERLAY */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* MESH GRADIENT BG */
+    .mesh {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background:
+        radial-gradient(ellipse 60% 50% at 20% 20%, rgba(124,58,237,0.18) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 60% at 80% 80%, rgba(224,64,251,0.12) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 40% at 50% 50%, rgba(124,58,237,0.08) 0%, transparent 70%);
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.1rem 5%;
+      background: rgba(5,5,10,0.7);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.7rem;
+      letter-spacing: 3px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    .nav-cta {
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: white !important;
+      padding: 0.5rem 1.3rem;
+      border-radius: 50px;
+      font-weight: 600 !important;
+      transition: opacity 0.3s, transform 0.2s !important;
+    }
+
+    .nav-cta:hover { opacity: 0.9; transform: scale(1.04) !important; color: white !important; }
+
+    /* HERO */
+    .hero {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 8rem 5% 5rem;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(124,58,237,0.15);
+      border: 1px solid rgba(124,58,237,0.4);
+      border-radius: 50px;
+      padding: 0.4rem 1.1rem;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #c4a8ff;
+      margin-bottom: 2rem;
+      animation: fadeUp 0.8s ease both;
+    }
+
+    .hero-badge .dot {
+      width: 7px; height: 7px;
+      background: #7c3aed;
+      border-radius: 50%;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.4); }
+    }
+
+    .hero h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(4rem, 12vw, 9rem);
+      line-height: 0.9;
+      letter-spacing: 4px;
+      animation: fadeUp 0.8s 0.1s ease both;
+    }
+
+    .hero h1 span {
+      display: block;
+      background: linear-gradient(135deg, #a78bfa, var(--accent2), #7c3aed);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-sub {
+      margin-top: 1.5rem;
+      font-size: 1.1rem;
+      color: var(--muted);
+      max-width: 520px;
+      line-height: 1.7;
+      animation: fadeUp 0.8s 0.2s ease both;
+    }
+
+    .hero-sub strong { color: var(--text); }
+
+    .hero-btns {
+      display: flex;
+      gap: 1rem;
+      margin-top: 2.5rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      animation: fadeUp 0.8s 0.3s ease both;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: white;
+      padding: 0.85rem 2rem;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-decoration: none;
+      letter-spacing: 0.5px;
+      box-shadow: var(--glow);
+      transition: transform 0.2s, box-shadow 0.3s;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px) scale(1.03);
+      box-shadow: 0 0 60px rgba(124,58,237,0.5);
+    }
+
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      border: 1.5px solid var(--border);
+      color: var(--text);
+      padding: 0.85rem 2rem;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: border-color 0.3s, background 0.3s;
+    }
+
+    .btn-outline:hover {
+      border-color: rgba(124,58,237,0.6);
+      background: rgba(124,58,237,0.08);
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 3rem;
+      margin-top: 4rem;
+      animation: fadeUp 0.8s 0.4s ease both;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .stat {
+      text-align: center;
+    }
+
+    .stat-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.4rem;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: 2px;
+    }
+
+    .stat-label {
+      font-size: 0.8rem;
+      color: var(--muted);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    /* SCROLL INDICATOR */
+    .scroll-down {
+      margin-top: 3rem;
+      animation: bounce 2s infinite, fadeUp 0.8s 0.5s ease both;
+      color: var(--muted);
+      font-size: 0.8rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .scroll-down::after {
+      content: '';
+      display: block;
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, var(--accent), transparent);
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(6px); }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* SECTION COMMONS */
+    section {
+      position: relative;
+      z-index: 1;
+      padding: 6rem 5%;
+    }
+
+    .section-label {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--accent2);
+      margin-bottom: 0.8rem;
+    }
+
+    .section-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+
+    .section-desc {
+      color: var(--muted);
+      max-width: 500px;
+      line-height: 1.7;
+      font-size: 1rem;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .section-header .section-desc {
+      margin: 0 auto;
+    }
+
+    /* ABOUT / HOW IT WORKS */
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .step-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s, border-color 0.3s;
+    }
+
+    .step-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .step-card:hover { transform: translateY(-4px); border-color: rgba(124,58,237,0.4); }
+    .step-card:hover::before { opacity: 1; }
+
+    .step-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 3.5rem;
+      color: rgba(124,58,237,0.15);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+
+    .step-icon {
+      font-size: 2rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .step-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .step-desc {
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    /* PRICING */
+    .pricing {
+      background: var(--surface);
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .price-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 2.5rem;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s;
+    }
+
+    .price-card:hover { transform: translateY(-6px); }
+
+    /* REGULAR */
+    .price-card.regular {
+      border-color: rgba(120,80,255,0.25);
+    }
+
+    /* VVIP */
+    .price-card.vvip {
+      border-color: rgba(245,200,66,0.4);
+      background: linear-gradient(160deg, #16130a 0%, var(--card) 60%);
+    }
+
+    .price-card.vvip::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 28px;
+      background: linear-gradient(135deg, rgba(245,200,66,0.06), transparent);
+      pointer-events: none;
+    }
+
+    .vvip-glow {
+      position: absolute;
+      top: -40px; right: -40px;
+      width: 180px; height: 180px;
+      background: radial-gradient(circle, rgba(245,200,66,0.25), transparent 70%);
+      pointer-events: none;
+    }
+
+    .price-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 0.3rem 0.9rem;
+      border-radius: 50px;
+      margin-bottom: 1.5rem;
+    }
+
+    .price-badge.regular { background: rgba(124,58,237,0.15); color: #c4a8ff; border: 1px solid rgba(124,58,237,0.3); }
+    .price-badge.vvip { background: rgba(245,200,66,0.12); color: var(--gold); border: 1px solid rgba(245,200,66,0.4); }
+
+    .price-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.2rem;
+      letter-spacing: 3px;
+      margin-bottom: 0.5rem;
+    }
+
+    .price-card.vvip .price-name {
+      background: linear-gradient(135deg, var(--gold), var(--gold2), #ff9f00);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .price-tagline {
+      color: var(--muted);
+      font-size: 0.88rem;
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+
+    .price-amount {
+      display: flex;
+      align-items: baseline;
+      gap: 0.3rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .price-currency {
+      font-size: 1.1rem;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    .price-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 3.5rem;
+      letter-spacing: 2px;
+    }
+
+    .price-card.regular .price-num { color: #a78bfa; }
+    .price-card.vvip .price-num { background: linear-gradient(135deg, var(--gold), var(--gold2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+    .price-note {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-bottom: 2rem;
+    }
+
+    .price-divider {
+      height: 1px;
+      background: var(--border);
+      margin: 1.5rem 0;
+    }
+
+    .price-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+      margin-bottom: 2rem;
+    }
+
+    .price-features li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.7rem;
+      font-size: 0.9rem;
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    .feat-icon {
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.65rem;
+      font-weight: 700;
+      margin-top: 2px;
+    }
+
+    .feat-icon.check { background: rgba(124,58,237,0.2); color: #a78bfa; }
+    .feat-icon.gold { background: rgba(245,200,66,0.15); color: var(--gold); }
+
+    .btn-order-regular {
+      display: block;
+      text-align: center;
+      background: rgba(124,58,237,0.15);
+      border: 1.5px solid rgba(124,58,237,0.5);
+      color: #c4a8ff;
+      padding: 0.9rem;
+      border-radius: 14px;
+      font-weight: 700;
+      text-decoration: none;
+      font-size: 0.95rem;
+      letter-spacing: 0.5px;
+      transition: background 0.3s, transform 0.2s;
+    }
+
+    .btn-order-regular:hover {
+      background: rgba(124,58,237,0.3);
+      transform: scale(1.02);
+    }
+
+    .btn-order-vvip {
+      display: block;
+      text-align: center;
+      background: linear-gradient(135deg, var(--gold), var(--gold2), #ff9f00);
+      color: #1a1000;
+      padding: 0.9rem;
+      border-radius: 14px;
+      font-weight: 800;
+      text-decoration: none;
+      font-size: 0.95rem;
+      letter-spacing: 0.5px;
+      box-shadow: var(--glow-gold);
+      transition: opacity 0.3s, transform 0.2s;
+    }
+
+    .btn-order-vvip:hover {
+      opacity: 0.92;
+      transform: scale(1.02);
+    }
+
+    /* TESTIMONIALS */
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .testi-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 1.8rem;
+      transition: transform 0.3s, border-color 0.3s;
+    }
+
+    .testi-card:hover { transform: translateY(-3px); border-color: rgba(124,58,237,0.35); }
+
+    .testi-stars {
+      color: var(--gold);
+      font-size: 0.85rem;
+      margin-bottom: 1rem;
+      letter-spacing: 2px;
+    }
+
+    .testi-text {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 1.2rem;
+      font-style: italic;
+    }
+
+    .testi-user {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+    }
+
+    .testi-avatar {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      background: rgba(124,58,237,0.15);
+    }
+
+    .testi-name {
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    .testi-role {
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    /* FAQ */
+    .faq {
+      background: var(--surface);
+    }
+
+    .faq-list {
+      max-width: 700px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .faq-item {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .faq-q {
+      padding: 1.3rem 1.5rem;
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: color 0.3s;
+      user-select: none;
+    }
+
+    .faq-q:hover { color: #c4a8ff; }
+
+    .faq-arrow {
+      color: var(--accent);
+      font-size: 1rem;
+      transition: transform 0.3s;
+      flex-shrink: 0;
+    }
+
+    .faq-item.open .faq-arrow { transform: rotate(180deg); }
+
+    .faq-a {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.3s;
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.7;
+      padding: 0 1.5rem;
+    }
+
+    .faq-item.open .faq-a {
+      max-height: 200px;
+      padding: 0 1.5rem 1.3rem;
+    }
+
+    /* CONTACT */
+    .contact-section {
+      text-align: center;
+    }
+
+    .contact-box {
+      max-width: 580px;
+      margin: 0 auto;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 3rem 2.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-box::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+    }
+
+    .contact-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 2rem;
+      font-weight: 800;
+      margin-bottom: 0.7rem;
+    }
+
+    .contact-sub {
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 2rem;
+    }
+
+    .discord-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8rem;
+      background: #5865F2;
+      color: white;
+      padding: 1rem 2rem;
+      border-radius: 14px;
+      font-weight: 700;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.3s;
+      box-shadow: 0 0 30px rgba(88,101,242,0.3);
+      margin-bottom: 1rem;
+    }
+
+    .discord-btn:hover {
+      transform: translateY(-2px) scale(1.03);
+      box-shadow: 0 0 50px rgba(88,101,242,0.5);
+    }
+
+    .discord-icon {
+      width: 24px; height: 24px;
+    }
+
+    .contact-note {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 1rem;
+    }
+
+    .contact-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+      justify-content: center;
+      margin-top: 1.5rem;
+    }
+
+    .contact-tag {
+      background: rgba(124,58,237,0.1);
+      border: 1px solid rgba(124,58,237,0.25);
+      color: #c4a8ff;
+      padding: 0.3rem 0.9rem;
+      border-radius: 50px;
+      font-size: 0.78rem;
+      font-weight: 500;
+    }
+
+    /* FOOTER */
+    footer {
+      position: relative;
+      z-index: 1;
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      padding: 3rem 5% 2rem;
+      text-align: center;
+    }
+
+    .footer-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2rem;
+      letter-spacing: 4px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-tagline {
+      color: var(--muted);
+      font-size: 0.85rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-tiktok {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 50px;
+      padding: 0.5rem 1.2rem;
+      text-decoration: none;
+      color: var(--text);
+      font-size: 0.9rem;
+      font-weight: 600;
+      transition: background 0.3s, border-color 0.3s;
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-tiktok:hover {
+      background: rgba(255,255,255,0.08);
+      border-color: rgba(255,255,255,0.2);
+    }
+
+    .tiktok-icon {
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+    }
+
+    .footer-thanks {
+      color: var(--muted);
+      font-size: 0.85rem;
+      line-height: 1.8;
+      max-width: 460px;
+      margin: 0 auto 1.5rem;
+    }
+
+    .footer-divider {
+      height: 1px;
+      background: var(--border);
+      margin: 1.5rem 0;
+    }
+
+    .footer-copy {
+      color: rgba(138,138,170,0.5);
+      font-size: 0.75rem;
+      letter-spacing: 0.5px;
+    }
+
+    .footer-copy span {
+      color: var(--accent2);
+    }
+
+    /* FLOATING DECORATIVE */
+    .float-orb {
+      position: fixed;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 0;
+      filter: blur(80px);
+      animation: orb-float 8s ease-in-out infinite;
+    }
+
+    .orb1 {
+      width: 400px; height: 400px;
+      background: rgba(124,58,237,0.08);
+      top: 10%; left: -10%;
+      animation-delay: 0s;
+    }
+
+    .orb2 {
+      width: 300px; height: 300px;
+      background: rgba(224,64,251,0.07);
+      bottom: 20%; right: -8%;
+      animation-delay: 3s;
+    }
+
+    @keyframes orb-float {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-30px) scale(1.05); }
+    }
+
+    /* DIVIDER */
+    .wave-divider {
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--accent), var(--accent2), transparent);
+      opacity: 0.3;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hero-stats { gap: 1.5rem; }
+      .pricing-grid { grid-template-columns: 1fr; max-width: 380px; }
+      section { padding: 4rem 5%; }
+      .contact-box { padding: 2rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="mesh"></div>
+<div class="float-orb orb1"></div>
+<div class="float-orb orb2"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Bayok</div>
+  <ul class="nav-links">
+    <li><a href="#about">Tentang</a></li>
+    <li><a href="#pricing">Harga</a></li>
+    <li><a href="#testimonial">Review</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="#contact" class="nav-cta">Order Sekarang</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-badge">
+    <div class="dot"></div>
+    Joki Roblox Violence Distric Terpercaya
+  </div>
+  <h1>
+    LEVEL UP<br>
+    <span>BERSAMA KAMI</span>
+  </h1>
+  <p class="hero-sub">
+    Joki Roblox profesional dari <strong>Bayok</strong> — streamer berpengalaman yang siap bantu kamu capai level, rank, atau item apapun dengan <strong>aman, cepat, dan terpercaya.</strong>
+  </p>
+  <div class="hero-btns">
+    <a href="#pricing" class="btn-primary">
+      🎮 Lihat Paket
+    </a>
+    <a href="#contact" class="btn-outline">
+      💬 Chat Langsung
+    </a>
+  </div>
+  <div class="hero-stats">
+    <div class="stat">
+      <div class="stat-num">500+</div>
+      <div class="stat-label">Order Selesai</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">100%</div>
+      <div class="stat-label">Aman & Trusted</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">24/7</div>
+      <div class="stat-label">Siap Melayani</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">4.9★</div>
+      <div class="stat-label">Rating Pelanggan</div>
+    </div>
+  </div>
+  <div class="scroll-down">Scroll</div>
+</section>
+
+<div class="wave-divider"></div>
+
+<!-- HOW IT WORKS -->
+<section id="about">
+  <div class="section-header">
+    <div class="section-label">Cara Kerja</div>
+    <h2 class="section-title">Gimana Cara Ordernya?</h2>
+    <p class="section-desc">Prosesnya super gampang dan cepat. Cuma 4 langkah dan akun kamu langsung naik level!</p>
+  </div>
+  <div class="steps">
+    <div class="step-card">
+      <div class="step-num">01</div>
+      <div class="step-icon">📋</div>
+      <div class="step-title">Pilih Paket</div>
+      <div class="step-desc">Pilih paket Regular atau VVIP sesuai kebutuhan dan budget kamu.</div>
+    </div>
+    <div class="step-card">
+      <div class="step-num">02</div>
+      <div class="step-icon">💬</div>
+      <div class="step-title">Hubungi Kami</div>
+      <div class="step-desc">Chat langsung ke Discord kami. Ceritakan kebutuhan dan game Roblox-mu.</div>
+    </div>
+    <div class="step-card">
+      <div class="step-num">03</div>
+      <div class="step-icon">💳</div>
+      <div class="step-title">Bayar & Konfirmasi</div>
+      <div class="step-desc">Lakukan pembayaran sesuai paket, lalu kirim bukti ke admin kami.</div>
+    </div>
+    <div class="step-card">
+      <div class="step-num">04</div>
+      <div class="step-icon">🚀</div>
+      <div class="step-title">Proses & Done!</div>
+      <div class="step-desc">Joki langsung dikerjakan oleh tim kami. Progress bisa kamu pantau real-time.</div>
+    </div>
+  </div>
+</section>
+
+<div class="wave-divider"></div>
+
+<!-- PRICING -->
+<section id="pricing" class="pricing">
+  <div class="section-header">
+    <div class="section-label">Paket Layanan</div>
+    <h2 class="section-title">Pilih Paket Terbaikmu</h2>
+    <p class="section-desc">Dua pilihan paket yang bisa disesuaikan dengan kebutuhan dan keinginan kamu.</p>
+  </div>
+  <div class="pricing-grid">
+
+    <!-- REGULAR -->
+    <div class="price-card regular">
+      <div class="price-badge regular">⚡ Regular</div>
+      <div class="price-name">REGULAR</div>
+      <p class="price-tagline">
+        Paket standar yang tetap berkualitas. Cocok buat kamu yang mau naik level tanpa perlu fitur ekstra. Dikerjakan dengan serius dan tepat waktu.
+      </p>
+      <div class="price-amount">
+        <span class="price-currency">Rp</span>
+        <span class="price-num">15K</span>
+      </div>
+      <div class="price-note">mulai dari / tergantung request</div>
+      <div class="price-divider"></div>
+      <ul class="price-features">
+        <li>
+          <span class="feat-icon check">✓</span>
+          Joki level / rank / quest sesuai request
+        </li>
+        <li>
+          <span class="feat-icon check">✓</span>
+          Pengerjaan dalam antrian normal (1–3 hari)
+        </li>
+        <li>
+          <span class="feat-icon check">✓</span>
+          Laporan selesai via Discord
+        </li>
+        <li>
+          <span class="feat-icon check">✓</span>
+          Keamanan akun terjaga
+        </li>
+        <li>
+          <span class="feat-icon check">✓</span>
+          Revisi 1x jika ada kendala
+        </li>
+      </ul>
+      <a href="https://discord.com/users/bayok7" target="_blank" class="btn-order-regular">⚡ Order Regular</a>
+    </div>
+
+    <!-- VVIP -->
+    <div class="price-card vvip">
+      <div class="vvip-glow"></div>
+      <div class="price-badge vvip">👑 VVIP</div>
+      <div class="price-name">V V I P</div>
+      <p class="price-tagline">
+        Paket premium eksklusif untuk kamu yang ingin pelayanan terbaik — prioritas utama, dikerjakan lebih cepat, dan dapat bonus spesial!
+      </p>
+      <div class="price-amount">
+        <span class="price-currency" style="color: var(--gold)">Rp</span>
+        <span class="price-num">35K</span>
+      </div>
+      <div class="price-note" style="color: rgba(245,200,66,0.5)">mulai dari / tergantung request</div>
+      <div class="price-divider" style="background: rgba(245,200,66,0.2)"></div>
+      <ul class="price-features">
+        <li>
+          <span class="feat-icon gold">★</span>
+          Semua fitur Regular included
+        </li>
+        <li>
+          <span class="feat-icon gold">★</span>
+          Prioritas antrian — dikerjakan duluan
+        </li>
+        <li>
+          <span class="feat-icon gold">★</span>
+          Pengerjaan kilat (max 24 jam)
+        </li>
+        <li>
+          <span class="feat-icon gold">★</span>
+          Update progress real-time setiap 2 jam
+        </li>
+        <li>
+          <span class="feat-icon gold">★</span>
+          Revisi unlimited selama masa garansi
+        </li>
+        <li>
+          <span class="feat-icon gold">★</span>
+          Bonus item/surprise dari admin 🎁
+        </li>
+        <li>
+          <span class="feat-icon gold">★</span>
+          Akses group VVIP eksklusif
+        </li>
+      </ul>
+      <a href="https://discord.com/users/wahyuw" target="_blank" class="btn-order-vvip">👑 Order VVIP Sekarang</a>
+    </div>
+
+  </div>
+</section>
+
+<div class="wave-divider"></div>
+
+<!-- TESTIMONIALS -->
+<section id="testimonial">
+  <div class="section-header">
+    <div class="section-label">Testimoni</div>
+    <h2 class="section-title">Kata Mereka Yang Udah Order</h2>
+    <p class="section-desc">Ratusan pelanggan puas. Ini sebagian review jujur dari mereka!</p>
+  </div>
+  <div class="testimonials-grid">
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"Serius cepet banget! Baru 3 jam udah selesai. Pas pilih paket VVIP emang worth banget sih, dapet update terus."</p>
+      <div class="testi-user">
+        <div class="testi-avatar">🎮</div>
+        <div>
+          <div class="testi-name">Rizky_xD</div>
+          <div class="testi-role">Paket VVIP</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"Udah 2x order disini, ga pernah kecewa. Admin ramah, respon cepat, akun aman. Highly recommend!"</p>
+      <div class="testi-user">
+        <div class="testi-avatar">🏆</div>
+        <div>
+          <div class="testi-name">NabilaGamez</div>
+          <div class="testi-role">Paket Regular</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"Terpercaya banget! Harga juga reasonable. Paket VVIP dapet bonus item, kaget juga wkwk. Pasti balik lagi."</p>
+      <div class="testi-user">
+        <div class="testi-avatar">⚡</div>
+        <div>
+          <div class="testi-name">FaizulGG</div>
+          <div class="testi-role">Paket VVIP</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">★★★★☆</div>
+      <p class="testi-text">"Awalnya ragu, tapi ternyata legit! Selesai sesuai estimasi, no drama. Recommended buat temen-temen yang mau joki."</p>
+      <div class="testi-user">
+        <div class="testi-avatar">🌟</div>
+        <div>
+          <div class="testi-name">Andi_Play</div>
+          <div class="testi-role">Paket Regular</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"Wahyuw emang terpercaya sebagai streamer. Joki-nya juga profesional, ga kaleng-kaleng. Mantap jiwa!"</p>
+      <div class="testi-user">
+        <div class="testi-avatar">👑</div>
+        <div>
+          <div class="testi-name">SelviaRBX</div>
+          <div class="testi-role">Paket VVIP</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"Fast response, hasil memuaskan, harga worth it. Pokoknya yang penting order disini aja lah, ga bakal nyesel!"</p>
+      <div class="testi-user">
+        <div class="testi-avatar">🔥</div>
+        <div>
+          <div class="testi-name">BintangGamer</div>
+          <div class="testi-role">Paket Regular</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wave-divider"></div>
+
+<!-- FAQ -->
+<section id="faq" class="faq">
+  <div class="section-header">
+    <div class="section-label">FAQ</div>
+    <h2 class="section-title">Pertanyaan Umum</h2>
+    <p class="section-desc">Ada yang masih bingung? Cek dulu jawaban dari pertanyaan yang sering ditanyain!</p>
+  </div>
+  <div class="faq-list">
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        Apakah akun saya aman saat dijoki?
+        <span class="faq-arrow">▼</span>
+      </div>
+      <div class="faq-a">100% aman! Kami menggunakan metode yang sudah teruji dan tidak akan membahayakan akun kamu. Sudah ratusan order dan tidak ada komplain soal keamanan akun.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        Berapa lama waktu pengerjaan?
+        <span class="faq-arrow">▼</span>
+      </div>
+      <div class="faq-a">Untuk paket Regular, estimasi 1–3 hari kerja tergantung antrian dan tingkat kesulitan. Untuk paket VVIP, dikerjakan prioritas dan maksimal 24 jam. Namun untuk request yang sangat kompleks bisa lebih lama — akan dikonfirmasi sebelum order.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        Metode pembayaran apa yang tersedia?
+        <span class="faq-arrow">▼</span>
+      </div>
+      <div class="faq-a">Kami menerima transfer bank (BCA, Mandiri, BRI), GoPay, OVO, Dana, dan QRIS. Konfirmasi metode pembayaran bisa langsung ditanyakan saat chat ke Discord admin.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        Apakah ada garansi jika tidak berhasil?
+        <span class="faq-arrow">▼</span>
+      </div>
+      <div class="faq-a">Ada! Jika pengerjaan tidak sesuai request atau ada kendala teknis dari pihak kami, kami akan mengulang pengerjaan tanpa biaya tambahan (khusus VVIP: unlimited revisi). Untuk paket Regular revisi 1x.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        Game Roblox apa saja yang bisa dijoki?
+        <span class="faq-arrow">▼</span>
+      </div>
+      <div class="faq-a">Hampir semua game populer di Roblox bisa kami handle! Seperti Blox Fruits, Adopt Me, Pet Simulator, Arsenal, Murder Mystery, Jailbreak, dan masih banyak lagi. Tanyakan langsung ke admin untuk konfirmasi.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        Apa bedanya paket Regular dan VVIP?
+        <span class="faq-arrow">▼</span>
+      </div>
+      <div class="faq-a">Paket Regular adalah layanan standar dengan pengerjaan normal sesuai antrian. Paket VVIP memberikan prioritas utama, pengerjaan lebih cepat (max 24 jam), update real-time setiap 2 jam, revisi unlimited, bonus item spesial, dan akses grup eksklusif VVIP kami.</div>
+    </div>
+  </div>
+</section>
+
+<div class="wave-divider"></div>
+
+<!-- CONTACT -->
+<section id="contact" class="contact-section">
+  <div class="contact-box">
+    <div class="contact-title">Yuk, Order Sekarang! 🎮</div>
+    <p class="contact-sub">
+      Hubungi kami langsung lewat Discord untuk konsultasi gratis, tanya-tanya soal harga, atau langsung order. Admin kami siap melayani 24/7!
+    </p>
+    <a href="https://discord.com/users/wahyuw" target="_blank" class="discord-btn">
+      <svg class="discord-icon" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+        <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/>
+      </svg>
+      Chat di Discord Sekarang
+    </a>
+    <p class="contact-note">Klik tombol di atas untuk langsung chat ke Discord pribadi admin</p>
+    <div class="contact-tags">
+      <span class="contact-tag">⚡ Fast Response</span>
+      <span class="contact-tag">🔒 Aman & Terpercaya</span>
+      <span class="contact-tag">🎮 Konsultasi Gratis</span>
+      <span class="contact-tag">24/7 Online</span>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">WahyuW</div>
+  <p class="footer-tagline">Joki Roblox Terpercaya • Premium Service</p>
+
+  <a href="https://www.tiktok.com/@byxwy" target="_blank" class="footer-tiktok">
+    <svg class="tiktok-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.88a8.27 8.27 0 0 0 4.84 1.54V6.97a4.85 4.85 0 0 1-1.07-.28z" fill="white"/>
+    </svg>
+    @wahyuw
+  </a>
+
+  <p class="footer-thanks">
+    Makasih banget udah mampir ke website kami! 🙏<br>
+    Semoga kamu bisa nemuin paket yang pas dan segera level up di Roblox.<br>
+    Jangan ragu buat hubungi kami kapan aja — kami selalu siap bantuin! ❤️
+  </p>
+
+  <div class="footer-divider"></div>
+  <p class="footer-copy">
+    © 2025 <span>WahyuW</span> Joki Roblox. Made with ❤️ for gamers Indonesia.
+  </p>
+</footer>
+
+<script>
+  function toggleFaq(el) {
+    const item = el.parentElement;
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+
+  // Scroll reveal animation
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.step-card, .price-card, .testi-card, .faq-item').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
